@@ -39,7 +39,7 @@ jobs:
         sudo -u postgres createuser --superuser "$USER"
         
     - name: Config Test Enviroment
-      run: bin/rails db:setup
+      run: bin/rails db:drop db:create db:migrate
       env:
         RAILS_ENV: test
     
