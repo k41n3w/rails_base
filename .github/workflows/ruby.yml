@@ -31,5 +31,12 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+   
+    - name: Set up PostgreSQL
+      run: |
+        sudo apt-get install postgresql libpq-dev
+        sudo service postgresql start
+        sudo -u postgres createuser --superuser "$USER"
+    
     - name: Run tests
       run: bundle exec rake
