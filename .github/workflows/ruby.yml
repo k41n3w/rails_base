@@ -37,6 +37,11 @@ jobs:
         sudo apt-get install postgresql libpq-dev
         sudo service postgresql start
         sudo -u postgres createuser --superuser "$USER"
+        
+    - name: Config Test Enviroment
+      run: bin/rails db:setup
+      env:
+        RAILS_ENV: test
     
     - name: Run tests
       run: bundle exec rake
